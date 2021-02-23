@@ -1,23 +1,5 @@
 module.exports = function toReadable (number){
-	let road = 0,
-		result = '';
-	if(number > 20 && number < 100){
-		number = String(number).split('');
-		road = number.length - 1;
-	}else if(number >= 100){
-		number = number / 100;
-		number = String(number.toFixed(2)).split('');
-	
-		const index = number.indexOf('.');
-		if (index > -1){
-			number.splice(index, 1);
-		}
-		
-		road = 2;
-	}else{
-		road = 0;
-	}
-	//от 0 до 20 - числа почти без логики
+    //от 0 до 20 - числа почти без логики
 	const dictionary0 = {
 		'0'  : 'zero',
 		'1'  : 'one',
@@ -51,12 +33,30 @@ module.exports = function toReadable (number){
 		'7'  : 'seventy',
 		'8'  : 'eighty',
 		'9'  : 'ninety'
-	}
+	};
 	// массив с объектами
 	let arr = [
 		dictionary1,
 		dictionary0
 	];
+    let road = 0,
+		result = '';
+	if(number > 20 && number < 100){
+		number = String(number).split('');
+		road = number.length - 1;
+	}else if(number >= 100){
+		number = number / 100;
+		number = String(number.toFixed(2)).split('');
+	
+		const index = number.indexOf('.');
+		if (index > -1){
+			number.splice(index, 1);
+		}
+		
+		road = 2;
+	}else{
+		road = 0;
+	}
 	switch(road){
 		case 0:
 			return String(dictionary0[number]);
